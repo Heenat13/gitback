@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="jp@gc - Chrome Driver Config" enabled="true">
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+          <boolProp name="WebDriverConfig.maximize_browser">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">true</boolProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <stringProp name="ChromeDriverConfig.chromedriver_path">chromedriver.exe</stringProp>
+          <boolProp name="ChromeDriverConfig.android_enabled">false</boolProp>
+          <boolProp name="ChromeDriverConfig.headless_enabled">false</boolProp>
+          <boolProp name="ChromeDriverConfig.insecurecerts_enabled">true</boolProp>
+          <boolProp name="ChromeDriverConfig.incognito_enabled">true</boolProp>
+          <boolProp name="ChromeDriverConfig.no_sandbox_enabled">false</boolProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="LaunchPage" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 60);
+WDS.browser.get(&apos;https://petstore.octoperf.com/&apos;)
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[@href=&apos;actions/Catalog.action&apos;]&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="enterwebpage" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[@href=&apos;actions/Catalog.action&apos;]&quot;)).click();
+
+//wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[@src=&apos;../images/fish_icon.gif&apos;]&quot;)));
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[contains(text(), &apos;Sign In&apos;)]&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="signin" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[contains(text(), &apos;Sign In&apos;)]&quot;)).click();
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[contains(text(), &apos;Register Now!&apos;)]&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="register" enabled="true">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[contains(text(), &apos;Register Now!&apos;)]&quot;)).click();
+
+//wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.id(&quot;stripes--1441826181&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Details" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+
+WDS.browser.findElement(pkg.By.id(&quot;stripes--1441826181&quot;)).sendKeys(&quot;zee&quot;);
+WDS.browser.findElement(pkg.By.id(&quot;stripes--1441826181&quot;)).sendKeys(&quot;zee&quot;);
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[contains(text(), &apos;Register Now!&apos;)]&quot;)).click();
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.id(&quot;stripes--1441826181&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="click_onfish" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[@src=&apos;../images/fish_icon.gif&apos;]&quot;)).click();
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[@href=&apos;/actions/Catalog.action?viewProduct=&amp;productId=FI-SW-01&apos;]&quot;)));
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="selectfish" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[@href=&apos;/actions/Catalog.action?viewProduct=&amp;productId=FI-SW-01&apos;]&quot;)).click(); //xpath of productid
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;//*[@href=&apos;/actions/Cart.action?addItemToCart=&amp;workingItemId=EST-1&apos;]&quot;))); //xpath of addto cart btn
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="addtocart" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[@href=&apos;/actions/Cart.action?addItemToCart=&amp;workingItemId=EST-1&apos;]&quot;)).click(); 
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.xpath(&quot;(//*[@class=&apos;Button&apos;])[2]&quot;))); 
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="proceedtocheckout" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;(//*[@class=&apos;Button&apos;])[2]&quot;)).click(); 
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.id(&quot;stripes-1345378924&quot;))); 
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="login" enabled="false">
+          <stringProp name="WebDriverSampler.script">WDS.sampleResult.sampleStart()
+var pkg = JavaImporter(org.openqa.selenium);
+var ui = JavaImporter(org.openqa.selenium.support.ui);
+var wait = new ui.WebDriverWait(WDS.browser, 30);
+
+WDS.browser.findElement(pkg.By.id(&quot;stripes-1345378924&quot;)).sendKeys(&quot;zee&quot;);
+WDS.browser.findElement(pkg.By.id(&quot;stripes-1345378924&quot;)).sendKeys(&quot;zee123&quot;);
+
+WDS.browser.findElement(pkg.By.xpath(&quot;//*[@name=&apos;signon&apos;]&quot;)).click();
+
+
+wait.until(ui.ExpectedConditions.visibilityOfElementLocated(pkg.By.id(&quot;WelcomeContent&quot;))); 
+WDS.sampleResult.sampleEnd()
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">javascript</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
